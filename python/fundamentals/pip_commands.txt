@@ -1,0 +1,39 @@
+Python Package Index Commands
+
+---------------------------------------
+
+-pip install Django==1.11.9
+
+Installs 'Django' package version 1.11.9
+
+-pip list
+
+List all Python packages in current environment
+
+-deactivate
+
+Deactivates the current virtual machine
+
+-pip3 list
+
+Lists all Python3 packages in current environment
+
+-source [pathname to virtual environment]
+
+Starts process for running virtual machine at specified virtual environment
+
+-pip freeze
+
+Before deployment, developer must freeze Python package dependencies. Freezing is a process where pip reads the versions of all installed packages in a local virtual environment and then produces a text file with the package version for each Python package specified
+
+-pip uninstall Django
+
+Uninstalls 'Django' from local virtual environment
+
+-pip show Django
+
+Show information about one or more installed packages
+
+-pip search Flask
+
+Search for PyPI packages whose name or summary contains [query]
