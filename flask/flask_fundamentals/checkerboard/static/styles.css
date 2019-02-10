@@ -1,0 +1,15 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.row {
+	font-size: 0;
+}
+
+.tile {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	vertical-align: top;
+}
