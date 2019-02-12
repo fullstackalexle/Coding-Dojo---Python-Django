@@ -10,4 +10,19 @@ $(document).ready(function(){
              $('#usernameMsg').html(res)  // manipulate the dom when the response comes back
         })
     })
+
+    $('#usersearch').keyup(function(e){
+        if(e.keyCode === 8 && $(this).text() === ""){
+            $('#search-helper').html("");
+        } else {        
+            var data = $("#searchForm").serialize();
+            $.ajax({
+                method: "GET",
+                url: "/usersearch",
+                data: data
+            }).done(function(res){
+                $('#search-helper').html(res);
+            });
+        }
+    });
 })

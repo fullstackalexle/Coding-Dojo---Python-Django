@@ -21,5 +21,22 @@ def username():
     # Notice that we are rendering on a post! Why is it okay to render on a post in this scenario?
     # Consider what would happen if the user clicks refresh. Would the form be resubmitted?
 
+@app.route("/usersearch")
+def search():
+    if len(request.args.get('name')) > 0:
+        mysql = connectToMySQL("ajaxWall")
+        query = "SELECT * FROM users WHERE username LIKE %%(name)s;"
+        data = {
+            "name" : request.args.get('name') + "%"  # get our data from the query string in the url
+        }
+        results = mysql.query_db(query, data)
+        print(results)
+        if results != False:
+            return render_template("success.html", users = results) # render a template which uses the results
+        else:
+            return render_template("wall.html")
+    else:
+        return False
+
 if __name__ == "__main__":
     app.run(debug=True)
