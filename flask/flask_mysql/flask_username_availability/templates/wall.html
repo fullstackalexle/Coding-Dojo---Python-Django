@@ -1,0 +1,14 @@
+<html>
+    <head>
+    	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='wall.js') }}"></script>
+    </head>
+    <form action="/register" method="post" id="regForm">
+        <div id="usernameMsg"></div>   <!-- notice the empty div reserved for our message -->
+        <input id="username" type="text" name="username">
+        <button type="submit">Submit</button>
+    </form>
+</html>
