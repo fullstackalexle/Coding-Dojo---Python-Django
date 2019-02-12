@@ -1,0 +1,36 @@
+<html>
+	<head></head>
+	<body>
+		<header>
+			<h1>CodingDojo Wall</h1>
+			<h2>Welcome, {{current_user.first_name}}!</h2>
+			<a href="/logout">Log Out</a>
+		</header>
+		<section id="messages-section">
+			<h4>{{ messages|length }} Message(s) for You</h4>
+			<div class="messages-wrapper">
+				{% for message in messages %}
+					<h6>{{message.first_name}} said ({{message.created_at}}):</h6>
+					<p>{{message.content}}</p>
+					<form action="/messages/delete" method="POST">
+						<input type="hidden" name="delete_message_id" value="{{message['messages.id']}}">
+						<input type="hidden" name="_method" value="DELETE" />
+						<input type="submit" value="DELETE">
+					</form>
+				{% endfor %}
+			</div>
+		</section>
+		<section id="send-messages-section">
+			<h4>Send Messages</h4>
+			<p>You have sent {{ sent_messages|length }} messages so far.</p>
+			{% for other_user in all_users %}
+				<form action="/messages/send" method="POST">
+					<label for="send_{{other_user.first_name}}_{{other_user.last_name}}_message">{{other_user.first_name}}</label>
+					<textarea name="message_content"></textarea>
+					<input type="hidden" name="receiver_id" value="{{other_user.id}}">
+					<input type="submit" value="SEND">
+				</form>
+			{% endfor %}
+		</section>
+	</body>
+</html>
