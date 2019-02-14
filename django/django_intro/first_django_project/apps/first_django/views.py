@@ -1,7 +1,14 @@
 # Create your views here.
 from django.shortcuts import render, HttpResponse, redirect
+from time import gmtime, strftime
+
 def index(request):
-    return HttpResponse("placeholder to later display a list of all blogs")
+    context = {
+    	"name": "Noelle",
+    	"favorite_color": "turquoise",
+    	"pets": ["Bruce", "Fitz", "Georgie"]
+    }
+    return render(request, "first_django/index.html", context)
 
 def new(request):
 	return HttpResponse("placeholder to display a new form to create a new blog")
@@ -17,3 +24,9 @@ def edit(request, number):
 
 def destroy(request, number):
 	return redirect("/")
+
+def time_display(request):
+    context = {
+        "time": strftime("%Y-%m-%d %H:%M %p", gmtime())
+    }
+    return render(request,'first_django/time_display.html', context)
