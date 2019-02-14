@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
    'apps.first_django', # added this line. Don't forget the comma!!
+   'apps.random_word',
    'django.contrib.admin',
    'django.contrib.auth',
    'django.contrib.contenttypes',

@@ -1,0 +1,18 @@
+<html>
+	<head>
+		{% load static %}
+	  	<link rel="stylesheet" href="{% static 'random_word/css/styles.css' %}">    
+	</head>
+	<body>
+		{% if request.session.counter != 0 %}
+			<h4>Random Word (attempt #{{counter}})</h4>
+		{% endif %}
+		<div class="random_word_container">
+			<h1>{{word}}</h1>
+		</div>
+		<form id="generate-word-form" action="/generate_random_word" method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Generate Word">
+		</form>
+	</body>
+</html>

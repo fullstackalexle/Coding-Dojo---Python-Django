@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('apps.first_django.urls')),	# use your app_name here
+    url(r'^', include('apps.random_word.urls'))
     # url(r'^admin/', admin.sites.urls)         # comment out, or just delete
 ]

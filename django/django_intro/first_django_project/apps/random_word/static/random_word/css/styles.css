@@ -1,0 +1,23 @@
+h4 {
+	margin: 0 auto;
+	width: 200px;
+}
+
+.random_word_container {
+	position: relative;
+	margin: 0 auto;
+	height: 100px;
+	width: 400px;
+	border: 1px solid #000;
+}
+
+.random_word_container h1 {
+	position: relative;
+	margin: 30px auto;
+	width: 250px;
+}
+
+#generate-word-form {
+	margin: 0 auto;
+	width: 100px;
+}
