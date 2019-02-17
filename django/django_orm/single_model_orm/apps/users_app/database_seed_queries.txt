@@ -33,3 +33,7 @@ bass.delete()
 User.objects.all().order_by("first_name")
 
 <QuerySet [<User: User object>, <User: User object>]>
+
+User.objects.all().order_by("-first_name")
+
+<QuerySet [<User: User object>, <User: User object>]>
