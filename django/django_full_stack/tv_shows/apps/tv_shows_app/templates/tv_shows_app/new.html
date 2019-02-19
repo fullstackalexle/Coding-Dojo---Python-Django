@@ -1,0 +1,40 @@
+<html>
+	<head>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'tv_shows_app/css/styles.css' %}">	
+	</head>
+	<body>
+		<h1>Add a New Show</h1>
+		<form action="/shows/create" method="POST">
+			{% csrf_token %}
+			<label for="show_title">
+				Title
+			</label>
+			<br>
+			<input type="text" name="show_title" />
+			<br>
+			<div class="inline-block">
+				<label for="show_network">
+					Network
+				</label>
+				<br>
+				<input type="text" name="show_network" />
+			</div>
+			<div class="inline-block">
+				<label for="show_release_date">
+					Release Date
+				</label>
+				<br>
+				<input type="date" name="show_release_date" />
+			</div>
+			<br>
+			<label for="show_description">
+				Description
+			</label>
+			<br>
+			<input type="textarea" name="show_description" />
+			<br>
+			<input type="submit" value="Create">
+		</form>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'tv_shows_app/css/styles.css' %}">	
+	</head>
+	<body>
+		<h1>Edit Show {{show.id}}</h1>
+		<form action="/shows/{{show.id}}/update" method="POST">
+			{% csrf_token %}
+			<label for="show_title">
+				Title
+			</label>
+			<br>
+			<input type="text" name="show_title" value="{{show.title}}" />
+			<br>
+			<div class="inline-block">
+				<label for="show_network">
+					Network
+				</label>
+				<br>
+				<input type="text" name="show_network" value="{{show.network}}" />
+			</div>
+			<div class="inline-block">
+				<label for="show_release_date">
+					Release Date
+				</label>
+				<br>
+				<input type="date" name="show_release_date" value="{{show.release_date|date:'Y-m-d'}}" />
+			</div>
+			<br>
+			<label for="show_description">
+				Description
+			</label>
+			<br>
+			<input type="textarea" name="show_description" value="{{show.description}}" />
+			<br>
+			<input type="submit" value="Update">
+		</form>
+	</body>
+</html>

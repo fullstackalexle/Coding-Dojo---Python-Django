@@ -1,0 +1,14 @@
+<html>
+	<head></head>
+	<body>
+		<h1>TV Show {{show.id}}</h1>
+		<h4>Title: {{show.title}}</h4>
+		<h4>Network: {{show.network}}</h4>
+		<h4>Release Date: {{show.release_date}}</h4>
+		<h4>Description: {{show.description}}</h4>
+
+		<p>Last Updated: {{show.updated_at}}</p>
+		<a href="/shows/{{show.id}}/edit">Edit</a>
+		<a href="/shows/{{show.id}}/delete">Delete</a>
+	</body>
+</html>
