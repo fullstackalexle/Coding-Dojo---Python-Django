@@ -1,0 +1,70 @@
+<html>
+	<head>
+    	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  		
+  		{% load static %}
+
+  		<script src="{% static 'wall_app/js/wall.js' %}"></script>
+	</head>
+	<body>
+		<header>
+			<h2>CodingDojo Wall</h2>
+			<h3>Welcome {{user.first_name}}</h3>
+			<a href="/users/logout">Log Off</a>
+		</header>
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li>{{message}}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<form id="post-new-message" action="/messages/post" method="POST">
+			
+			{% csrf_token %}
+
+			<label for="wall_message_text">Post a message</label>
+			<br>
+			<input type="textarea" name="wall_message_text" />
+
+			<input type="submit" value="Post a message">
+		</form>
+		<div class="feed-wrapper">
+			{% if wall_messages %}
+				{% for wall_message in wall_messages %}
+					<div class="wall-message-wrapper">
+						<h4>{{wall_message.user.first_name}} {{wall_message.user.last_name}} - <span class="timestamp">{{wall_message.created_at}}</h4>
+						<p class="wall-message-content">{{wall_message.message}}</p>
+						{{wall_message.get_elapse_time_diff}}
+						{% if wall_message.user.id == request.session.user_id and wall_message.get_elapse_time_diff_in_minutes < 30 %}
+							<form id="delete-message-{{wall_message.id}}" class="delete-message-form" action="messages/{{wall_message.id}}/destroy" method="POST">
+								{% csrf_token %}
+
+								<input type="hidden" name="delete_message_id" value="{{wall_message.id}}">
+								<input type="hidden" name="_method" value="DELETE" />
+								<input type="submit" value="Delete Message">
+							</form>
+						{% endif %}
+						<div class="wall-message-comment-wrapper">
+							{% for comment in wall_message.comment_set.all %}
+   								<p>{{comment.comment}}</p>
+							{% endfor %}
+							<form id="post-new-comment-{{wall_message.id}}" class="post-comment-form" action="/messages/{{wall_message.id}}/comments/post" method="POST">
+								{% csrf_token %}
+
+								<label for="wall_message_comment_text">Post a comment</label>
+								<br>
+								<input type="textarea" name="wall_message_comment_text" />
+
+								<input type="submit" value="Post a comment">
+							</form>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</body>
+</html>
