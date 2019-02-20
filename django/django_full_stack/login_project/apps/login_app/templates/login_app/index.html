@@ -1,0 +1,71 @@
+<html>
+	<head>
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'login_app/css/styles.css' %}">
+	</head>
+	<body>
+		
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li>{{message}}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+		<div class="form-wrapper">
+			<form action="/users/create" method="POST">
+				{% csrf_token %}
+
+				<label for="f_name">First Name</label>
+				<input type="text" name="f_name" />
+
+				<br>
+
+				<label for="l_name">Last Name</label>
+				<input type="text" name="l_name" />
+
+				<br>
+
+				<label for="birthdate">Birthdate</label>
+				<input type="date" name="birthdate" />
+
+				<br>
+
+				<label for="email">Email</label>
+				<input type="text" name="email" />
+
+				<br>
+
+				<label for="password">Password</label>
+				<input type="password" name="password" />
+
+				<br>
+
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" name="confirm_password" />
+
+				<br>
+
+				<input type="submit" value="Register">
+			</form>
+		</div>
+		<div class="form-wrapper">
+			<form action="/users/session/create" method="POST">
+				{% csrf_token %}
+
+				<label for="email">Email</label>
+				<input type="text" name="email" />
+
+				<br>
+
+				<label for="password">Password</label>
+				<input type="password" name="password" />
+
+				<br>
+
+				<input type="submit" value="Log In">
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<html>
+	<head></head>
+	<body>
+		<a href="/users/logout">Log Out</a>
+		
+		<h1>Success! Welcome, {{user.first_name}}!</h1>
+
+		{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li>{{message}}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+	</body>
+</html>
